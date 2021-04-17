@@ -1,0 +1,13 @@
+{
+  "name": "worldghl",
+  "version": "1.0.0",
+  "description": "World G. The \"Higher and Lower\" game geography-based.",
+  "main": "index.js",
+  "repository": "git@github.com:AlbertSuarez/worldghl.git",
+  "author": "alsumo95@gmail.com",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@vue/cli": "^4.5.12"
+  }
+}

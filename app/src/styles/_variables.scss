@@ -1,0 +1,11 @@
+//primary
+$wg-primary-color: #f7be3c;
+$wg-neutral-dark: #1f1b16;
+
+
+// breakpoints
+$breakpoints: (
+  phone: 640px, 
+  tablet: 768px, 
+  desktop: 1024px
+) !default;

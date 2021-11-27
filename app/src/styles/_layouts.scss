@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: row;
   width: inherit;
-  padding: 1.5em;
 }
 
 .wg-row {
@@ -16,6 +15,7 @@
 .wg-col {
   display: flex;
   flex-direction: column;
+  padding: 1.5em;
   &--50 {
     width: 50%;
   }
@@ -23,19 +23,19 @@
 
 
 @media (max-width: 640px) {
-  .wg-container {
+  .wg-col {
     padding: 0.5em;
   }
 }
 
 @media (min-width: 640px) and (max-width: 767px) {
-  .wg-container {
+  .wg-col {
     padding: 0.5em;
   }
 }
 
 @media (min-width: 768px) and (max-width: 950px) {
-  .wg-container {
+  .wg-col {
     padding: 1em;
   }
 }

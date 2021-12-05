@@ -4,17 +4,42 @@ const state = {
     topic: '',
     score: 0
   },
-  scores: {}
+  scores: {
+    record: 10
+  }
 }
 
-const getters = {}
+const getters = {
+  getData: state => (type) => {
+    const { description } = state.current.data
+    return {
+      ...state.current.data[type],
+      description
+    }
+  }
+}
 
 const mutations = {
   startCurrentGame (state, topic) {
     if (!topic) topic = 'POPULATION'
     state.current = {
       topic,
-      score: 0
+      score: 0,
+      data: {
+        last: {
+          title: 'Iceland',
+          value: '366425'
+        },
+        current: {
+          title: 'Thailand',
+          value: '70221093'
+        },
+        next: {
+          title: 'Spain',
+          value: '46559370'
+        },
+        description: 'of population'
+      },
     }
   },
   addCurrentScore (state) {
@@ -34,6 +59,7 @@ const mutations = {
 
 const actions = {
   initGame ({ commit }, topic) {
+    console.log('starting game:', topic)
     commit('startCurrentGame', topic)
   },
   finishGame ({ commit }) {

@@ -1,0 +1,7 @@
+{
+  "gameModes": [{
+    "name": "POPULATION"
+  }, {
+    "name": "DISTANCE"
+  }]
+}

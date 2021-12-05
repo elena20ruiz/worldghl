@@ -2,23 +2,21 @@
   <div id="main-page" class="wg-container wg-main-page">
     <div class="wg-row">
       <div class="wg-col wg-col--50 wg-background--primary">
-        <img src="../assets/img/logo.png" />
+        <main-brand />
       </div>
       <div class="wg-col wg-col--50 wg-main-page__menu">
-        <div class="wg-main-page__group-buttons">
-          <wg-button color="primary"> text </wg-button>
-          <wg-button color="primary"> text </wg-button>
-        </div>
+        <game-menu />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import WgButton from '../components/partials/buttons/wgButton.vue'
+  import MainBrand from '../layouts/Brand/MainBrand.vue'
+  import GameMenu from '../layouts/Menu/GameMenu.vue'
   export default {
     name: 'MainPage',
-    components: { WgButton },
+    components: { GameMenu, MainBrand }
   }
 </script>
 <style lang="scss">
@@ -33,12 +31,5 @@
       align-items: center;
       height: inherit;
     }
-    &__group-buttons {
-      display: flex;
-      flex-direction: column;
-      width: 30em;
-      gap: 1em;
-    }
   }
-
 </style>

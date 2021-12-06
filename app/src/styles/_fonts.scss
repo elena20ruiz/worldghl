@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+
+
+.wg-text {
+  &__title {
+    &--large {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700;
+      font-size: 50px;
+      letter-spacing: 0.1em;
+    }
+  }
+
+  &__body {
+    &--large {
+      font-family: 'Merriweather', serif;
+      font-size: 23px;
+    }
+  }
+
+  &__label {
+    &--large {
+      font-family: 'Raleway', sans-serif;
+      font-size: 40px;
+      line-height: 18px;
+      letter-spacing: .03em;
+      font-weight: 700;
+    }
+    &--medium {
+      font-family: 'Raleway', sans-serif;
+      font-size: 14px;
+      line-height: 18px;
+      letter-spacing: .03em;
+      font-weight: 700;
+    }
+  }
+
+  &__digits {
+    &--large {
+      font-family: 'Roboto', sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+    }
+  }
+}

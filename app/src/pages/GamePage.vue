@@ -1,10 +1,10 @@
 <template>
   <div id="game-page" class="wg-container wg-game-page">
     <div class="wg-row">
-      <div class="wg-col wg-col--50 wg-background--primary">
+      <div class="wg-col wg-col--50 wg-background--primary wg-game-page__data">
         <last-data />
       </div>
-      <div class="wg-col wg-col--50 wg-main-page__menu">
+      <div class="wg-col wg-col--50 wg-game-page__data">
         <current-data />
       </div>
     </div>
@@ -56,8 +56,16 @@
     }
   }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   #game-page {
     height: 100vh;
+  }
+
+  .wg-game-page {
+    &__data {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 </style>

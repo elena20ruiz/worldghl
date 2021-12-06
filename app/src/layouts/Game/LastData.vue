@@ -1,17 +1,17 @@
 <template>
   <div class="wg-game-data">
-    <span class="wg-game-data__title">
-      {{ lastData.title }}
-    </span>
-    <span class="wg-game-data__subtitle">
-      has
-    </span>
-    <span class="wg-game-data__value">
-      {{ lastData.value }}
-    </span>
-    <span class="wg-game-data__description">
-      {{ lastData.description }}
-    </span>
+    <div class="wg-game-data__title">
+      <span class="wg-text__title--large">{{ lastData.title }}</span>
+    </div>
+    <div class="wg-game-data__subtitle">
+      <span class="wg-text__body--large">has</span>
+    </div>
+    <div class="wg-game-data__value">
+      <span class="wg-text__digits--large">{{ lastData.value }}</span>
+    </div>
+    <div class="wg-game-data__description">
+      <span class="wg-text__body--large">{{ lastData.description }}</span>
+    </div>
   </div>
 </template>
 <script>

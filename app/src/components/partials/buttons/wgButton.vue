@@ -1,5 +1,5 @@
 <template>
-  <button :class="['wg-btn', `wg-btn--${type}`, `wg-btn--${color}`]" @click="onClick">
+  <button :class="['wg-btn', `wg-btn--${type}`, `wg-btn--${color}`, ' wg-text__label--medium']" @click="onClick">
     <label>
       <slot />
     </label>
@@ -31,17 +31,12 @@
   .wg-btn {
     display: inline-block;
     overflow: hidden;
-
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 18px;
-    letter-spacing: .03em;
-    line-height: 36px;
     vertical-align: middle;
     text-transform: uppercase;
     text-align: center;
     white-space: nowrap;
     transition: all .2s ease-in-out;
+    line-height: 36px;
 
     border: none;
     border-radius: 4px;

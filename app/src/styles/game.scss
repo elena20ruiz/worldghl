@@ -1,0 +1,15 @@
+.wg-game-data {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__title {
+    text-transform: uppercase;
+  }
+
+  &__value {
+    background-color: $wg-on-background;
+    border-radius: 6px;
+    padding: 8px 0px;
+  }
+}

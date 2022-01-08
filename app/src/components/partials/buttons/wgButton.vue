@@ -27,7 +27,7 @@
     }
   }
 </script>
-<style scoped lang="scss">
+<style lang="scss">
   .wg-btn {
     display: inline-block;
     overflow: hidden;

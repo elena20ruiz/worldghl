@@ -19,7 +19,7 @@
     components: { GameMenu, MainBrand }
   }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
   #main-page {
     height: 100vh;
   }

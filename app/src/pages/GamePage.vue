@@ -2,6 +2,9 @@
   <div id="game-page" class="wg-container wg-game-page">
     <div class="wg-row">
       <last-data class="wg-game-page__data" />
+      <div class="wg-game-page__vs">
+        <v-s-text />
+      </div>
       <current-data class="wg-game-page__data" />
     </div>
     <div class="wg-game-page__score-container">
@@ -17,9 +20,10 @@
   import LastData from '../layouts/Game/LastData.vue'
   import CurrentData from '../layouts/Game/CurrentData.vue'
   import Score from '../layouts/Game/Score.vue'
+  import VSText from '../layouts/Game/VSText.vue'
   export default {
     name: 'MainPage',
-    components: { LastData, CurrentData, Score },
+    components: { LastData, CurrentData, Score, VSText },
     computed: {
       ...mapState({
         recordScore: ({ game }) => game.scores.record
@@ -80,6 +84,20 @@
       width: auto;
       display: flex;
       justify-content: space-between;
+    }
+
+    &__vs {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      z-index: 2;
     }
   }
 </style>

@@ -1,14 +1,14 @@
 .wg-game-data {
   width: 100%;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
   background-color: $wg-surface-variant;
 
   &__content {
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
   }
 
   &__title {

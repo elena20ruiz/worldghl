@@ -1,5 +1,5 @@
 <template>
-  <div class="wg-score">
+  <div class="wg-score wg-text__label">
     <span>
       {{ text }}:
     </span>

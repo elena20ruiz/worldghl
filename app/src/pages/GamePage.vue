@@ -1,24 +1,22 @@
 <template>
   <div id="game-page" class="wg-container wg-game-page">
     <div class="wg-row">
-      <div class="wg-col wg-col--50 wg-background--primary wg-game-page__data">
-        <last-data />
-      </div>
-      <div class="wg-col wg-col--50 wg-game-page__data">
-        <current-data />
-      </div>
+      <last-data class="wg-game-page__data" />
+      <current-data class="wg-game-page__data" />
     </div>
-    <div>
-      <score text="Record" :value="score" />
-      <score text="Score" :value="recordScore"/>
+    <div class="wg-game-page__score-container">
+      <div class="wg-game-page__score">
+        <score text="Record" :value="score" />
+        <score text="Score" :value="recordScore"/>
+      </div>
     </div>
   </div>
 </template>
 <script>
+  import { mapState } from 'vuex'
   import LastData from '../layouts/Game/LastData.vue'
   import CurrentData from '../layouts/Game/CurrentData.vue'
   import Score from '../layouts/Game/Score.vue'
-  import { mapState } from 'vuex'
   export default {
     name: 'MainPage',
     components: { LastData, CurrentData, Score },
@@ -39,7 +37,7 @@
           // If it is not possible then reset.
       }
     },
-    beforeMount () {
+    async beforeMount () {
       const type = this.$route.params.game
       this.$store.dispatch('game/initGame', type)
       // Start game - load: last, current and next data
@@ -56,16 +54,32 @@
     }
   }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
   #game-page {
     height: 100vh;
   }
 
   .wg-game-page {
+
     &__data {
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    &__score-container {
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+
+      justify-content: space-between;
+    }
+
+    &__score {
+      margin: 2em;
+      width: auto;
+      display: flex;
+      justify-content: space-between;
     }
   }
 </style>

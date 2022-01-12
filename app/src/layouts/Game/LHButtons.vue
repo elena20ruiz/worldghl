@@ -1,7 +1,7 @@
 <template>
   <div class="wg-btn-group">
-    <wg-button>OK</wg-button>
-    <wg-button>KO</wg-button>
+    <wg-button @click="() => $emit('click', 0)">OK</wg-button>
+    <wg-button @click="() => $emit('click', 1)">KO</wg-button>
   </div>
 </template>
 <script>
@@ -14,6 +14,7 @@
 <style lang="scss">
   .wg-btn-group {
     border-radius: 12px;
+    cursor: pointer;
     button {
       border-radius: 0px;
     }

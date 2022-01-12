@@ -1,18 +1,23 @@
-
+import population from '../data/population.json'
+import { createUnsortedArray } from '../utils/random.js'
 const state = {
   current: {
     topic: '',
     score: 0,
+    level: 0,
     data: {}
   },
   scores: {
     record: 10
+  },
+  dataset: {
+    all: [],
+    order: []
   }
 }
 
 const getters = {
   getData: state => (type) => {
-    console.log({ state, state: state.current.data.last.background, type })
     const { description } = state.current.data
     return {
       ...state.current.data[type],
@@ -22,17 +27,41 @@ const getters = {
 }
 
 const mutations = {
-  startCurrentGame (state, { topic, data }) {
+  startCurrentGame (state, { topic }) {
     if (!topic) topic = 'POPULATION'
+    state.dataset.all = population.places
+    const SIZE = population.places.length
+    state.dataset.order = createUnsortedArray(SIZE)
+    const [ lastIndex, currentIndex, nextIndex ] = [
+      state.dataset.order[0],
+      state.dataset.order[1],
+      state.dataset.order[2]
+    ]
     state.current = {
       topic,
       score: 0,
-      data
+      level: 0,
+      data: {
+        last: state.dataset.all[lastIndex],
+        current: state.dataset.all[currentIndex],
+        next: state.dataset.all[nextIndex],
+        description: 'of population.'
+      }
     }
-    console.log({ c: state.current })
+    console.log({ current: state.current.data })
   },
-  addCurrentScore (state) {
+  validateAnswer (state) {
+    console.log({ level: state.current.level })
+    // Increase results
     state.current.score += 1
+    state.current.level += 1
+
+    // Prepare next question
+    state.current.data.last = state.current.data.current
+    state.current.data.current = state.current.data.next
+
+    const nextQuestion = state.dataset.order[state.current.level + 2]
+    state.current.data.next = state.dataset.all[nextQuestion]
   },
   updateUserScores (state) {
     const { topic, score } = state.current
@@ -48,38 +77,21 @@ const mutations = {
 
 const actions = {
   async initGame ({ commit }, topic) {
-    console.log('starting game:', topic)
-
-    const data = {
-      last: {
-        title: 'Iceland',
-        value: '366425',
-        background: {
-          url: 'https://images.unsplash.com/photo-1500043357865-c6b8827edf10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
-        }
-      },
-      current: {
-        title: 'Thailand',
-        value: '70221093',
-        background: {
-          url: 'https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
-        }
-      },
-      next: {
-        title: 'Spain',
-        value: '46559370',
-        background: {}
-      },
-      description: 'of population'
+    commit('startCurrentGame', { topic })
+  },
+  verifyAnswer ({ commit, state }, { userAnswer }) {
+    const { last: lastData, current: currentData } = state.current.data
+    const [valueL, valueR] = [parseInt(lastData.value), parseInt(currentData.value)]
+    const expectedAnswer = valueL < valueR
+    if (valueL !== valueR && expectedAnswer !== Boolean(userAnswer)) {
+      console.log('is invalid')
+      commit('updateUserScores')
+      return { valid: false }
+    } else {
+      console.log('is valid')
+      commit('validateAnswer')
+      return { value: true }
     }
-    console.log({ data })
-    commit('startCurrentGame', { topic, data })
-  },
-  finishGame ({ commit }) {
-    commit('updateUserScores')
-  },
-  addScore ({ commit }) {
-    commit('addCurrentScore')
   }
 }
 

@@ -1,8 +1,6 @@
 <template>
   <button :class="['wg-btn', `wg-btn--${type}`, `wg-btn--${color}`, ' wg-text__label--medium']" @click="onClick">
-    <label>
-      <slot />
-    </label>
+    <slot />
   </button>
 </template>
 

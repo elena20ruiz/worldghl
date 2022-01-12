@@ -9,7 +9,7 @@
         <span class="wg-text__body wg-text__body--large">has</span>
       </div>
       <div class="wg-game-data__buttons">
-        <l-h-buttons />
+        <l-h-buttons @click="(e) => $emit('click', e)"/>
       </div>
       <div class="wg-game-data__description">
         <span class="wg-text__body wg-text__body--large">{{ lastData.description }}</span>
@@ -30,6 +30,7 @@
       lastData () {
         return this.getData('current')
       }
-    }
+    },
+    emits: ['click']
   }
 </script>

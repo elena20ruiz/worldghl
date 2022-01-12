@@ -5,7 +5,7 @@
       <div class="wg-game-page__vs">
         <v-s-text />
       </div>
-      <current-data class="wg-game-page__data" />
+      <current-data class="wg-game-page__data" @click="onClick" />
     </div>
     <div class="wg-game-page__score-container">
       <div class="wg-game-page__score">
@@ -49,7 +49,11 @@
       // Show just last and current.
     },  
     methods: {
-      onClick () {
+      onClick (value) {
+        if (typeof value === 'number') {
+          console.log('click value', value)
+          this.$store.dispatch('game/verifyAnswer', { userAnswer: value })
+        }
         // 1. If it is correct -> nextStep (dispath)
         // 2. If it is incorrect:
         // -  endGame (dispath)

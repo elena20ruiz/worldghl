@@ -48,14 +48,13 @@ const mutations = {
         description: 'of population.'
       }
     }
-    console.log({ current: state.current.data })
   },
   validateAnswer (state) {
-    console.log({ level: state.current.level })
     // Increase results
     state.current.score += 1
     state.current.level += 1
-
+  },
+  changeToNextQuestion (state) {
     // Prepare next question
     state.current.data.last = state.current.data.current
     state.current.data.current = state.current.data.next
@@ -84,14 +83,15 @@ const actions = {
     const [valueL, valueR] = [parseInt(lastData.value), parseInt(currentData.value)]
     const expectedAnswer = valueL > valueR
     if (valueL !== valueR && expectedAnswer !== Boolean(userAnswer)) {
-      console.log('is invalid')
       commit('updateUserScores')
       return { valid: false }
     } else {
-      console.log('is valid')
       commit('validateAnswer')
       return { value: true }
     }
+  },
+  changeToNextQuestion ({ commit }) {
+    commit('changeToNextQuestion')
   }
 }
 

@@ -1,16 +1,17 @@
 <template>
-  <div id="game-page" class="wg-container wg-game-page">
-    <div class="wg-row">
+  <div id="game-page" class="wg-container">
+    <div class="wg-game-page__vs">
+      <v-s-text />
+    </div>
+    <div class="wg-row wg-game-page" id="wg-game-page">
       <last-data class="wg-game-page__data" />
-      <div class="wg-game-page__vs">
-        <v-s-text />
-      </div>
-      <current-data class="wg-game-page__data" @click="onClick" />
+      <current-data class="wg-game-page__data" @change="onChange" />
+      <next-data class="wg-game-page__data" />
     </div>
     <div class="wg-game-page__score-container">
       <div class="wg-game-page__score">
-        <score text="Record" :value="score" />
-        <score text="Score" :value="recordScore"/>
+        <score text="Record" :value="recordScore" />
+        <score text="Score" :value="score"/>
       </div>
     </div>
   </div>
@@ -19,11 +20,12 @@
   import { mapState } from 'vuex'
   import LastData from '../layouts/Game/LastData.vue'
   import CurrentData from '../layouts/Game/CurrentData.vue'
+  import NextData from '../layouts/Game/NextData.vue'
   import Score from '../layouts/Game/Score.vue'
   import VSText from '../layouts/Game/VSText.vue'
   export default {
     name: 'MainPage',
-    components: { LastData, CurrentData, Score, VSText },
+    components: { LastData, CurrentData, Score, VSText, NextData },
     computed: {
       ...mapState({
         recordScore: ({ game }) => game.scores.record,
@@ -44,17 +46,14 @@
     async beforeMount () {
       const type = this.$route.params.game
       this.$store.dispatch('game/initGame', type)
-    },  
+    },
     methods: {
-      async onClick (value) {
-        if (typeof value === 'number') {
-          const result = await this.$store.dispatch('game/verifyAnswer', { userAnswer: value })
-          console.log({ result })
-          if (!result.value) {
-
-            this.$router.push({ name: 'EndPage' })
-          }
-        }
+      onChange() {
+        const div = document.getElementById('wg-game-page')
+        div.className += " " + 'wg-game-page--processing';
+        setTimeout(() => {
+          div.className = div.className.replace('wg-game-page--processing', '')
+        }, 2000)
       }
     }
   }
@@ -62,14 +61,22 @@
 <style lang="scss">
   #game-page {
     height: 100vh;
+    width: 100%;
+    overflow: hidden;
   }
 
   .wg-game-page {
-
+    width: 150%;
+    position: relative;
+    &--processing {
+      transform: translateX(-50%);
+      transition-duration: 2s;
+    }
     &__data {
       display: flex;
       justify-content: center;
       align-items: center;
+      flex: 0 0 50%;
     }
 
     &__score-container {

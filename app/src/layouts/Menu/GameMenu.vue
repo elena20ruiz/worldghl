@@ -8,7 +8,6 @@
 </template>
 <script>
   import WgButton from '../../components/partials/buttons/wgButton.vue'
-  import gameList from '../../data/gameList.json'
   export default {
     name: 'GameMenu',
     components: { WgButton },

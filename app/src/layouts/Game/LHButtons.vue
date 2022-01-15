@@ -1,7 +1,7 @@
 <template>
   <div class="wg-btn-group">
-    <wg-button @click="() => $emit('click', 0)">OK</wg-button>
-    <wg-button @click="() => $emit('click', 1)">KO</wg-button>
+    <wg-button @click="() => $emit('click', 0)">MORE</wg-button>
+    <wg-button @click="() => $emit('click', 1)">LESS</wg-button>
   </div>
 </template>
 <script>

@@ -65,7 +65,7 @@ const mutations = {
   },
   updateUserScores (state) {
     const { topic, score } = state.current
-    if (!state.scores[topic] || state.score[topic] < score) {
+    if (!state.scores[topic] || state.scores[topic].score < score) {
       const now = new Date()
       state.scores[topic] = {
         score,
@@ -82,7 +82,7 @@ const actions = {
   verifyAnswer ({ commit, state }, { userAnswer }) {
     const { last: lastData, current: currentData } = state.current.data
     const [valueL, valueR] = [parseInt(lastData.value), parseInt(currentData.value)]
-    const expectedAnswer = valueL < valueR
+    const expectedAnswer = valueL > valueR
     if (valueL !== valueR && expectedAnswer !== Boolean(userAnswer)) {
       console.log('is invalid')
       commit('updateUserScores')

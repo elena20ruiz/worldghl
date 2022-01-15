@@ -26,12 +26,12 @@
     components: { LastData, CurrentData, Score, VSText },
     computed: {
       ...mapState({
-        recordScore: ({ game }) => game.scores.record
+        recordScore: ({ game }) => game.scores.record,
+        score: ({ game }) => game.current.score
       })
     },
     data () {
       return {
-        score: 0,
         startTime: ''
       }
     },
@@ -44,20 +44,17 @@
     async beforeMount () {
       const type = this.$route.params.game
       this.$store.dispatch('game/initGame', type)
-      // Start game - load: last, current and next data
-      // Init values
-      // Show just last and current.
     },  
     methods: {
-      onClick (value) {
+      async onClick (value) {
         if (typeof value === 'number') {
-          console.log('click value', value)
-          this.$store.dispatch('game/verifyAnswer', { userAnswer: value })
+          const result = await this.$store.dispatch('game/verifyAnswer', { userAnswer: value })
+          console.log({ result })
+          if (!result.value) {
+
+            this.$router.push({ name: 'EndPage' })
+          }
         }
-        // 1. If it is correct -> nextStep (dispath)
-        // 2. If it is incorrect:
-        // -  endGame (dispath)
-        // - redirect page
       }
     }
   }

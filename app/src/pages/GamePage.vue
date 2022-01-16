@@ -55,7 +55,6 @@ import { delay } from '../utils/delay'
           this.vsStatus = 'CORRECT'
           await delay(1000)
           this.vsStatus = 'INVISIBLE'
-          console.log('changing to invisible')
           const div = document.getElementById('wg-game-page')
           div.className += " " + 'wg-game-page--processing'
           setTimeout(() => {

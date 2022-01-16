@@ -66,6 +66,15 @@
             background-color: $wg-on-secondary-container-color;
           }
         }
+
+        &--tertiary {
+          color: $wg-on-tertiary-color;
+          background-color: $wg-tertiary-color;
+          &:active, &:focus,&:hover {
+            color: $wg-tertiary-container-color;
+            background-color: $wg-on-tertiary-container-color;
+          }
+        }
       }
     }
 
@@ -89,6 +98,16 @@
           &:active,&:hover {
             border: 1px solid $wg-on-secondary-container-color;
             color: $wg-secondary-color;
+          }
+        }
+
+        &--tertiary {
+          border: 1px solid $wg-on-tertiary-color;
+          color: $wg-tertiary-container-color;
+
+          &:active,&:hover {
+            border: 1px solid $wg-on-tertiary-container-color;
+            color: $wg-tertiary-color;
           }
         }
       }

@@ -1,7 +1,21 @@
 <template>
   <div class="wg-btn-group">
-    <wg-button @click="() => $emit('click', 0)">MORE</wg-button>
-    <wg-button @click="() => $emit('click', 1)">LESS</wg-button>
+    <wg-button
+      class="wg-btn-group__button wg-btn-group__button--higher"
+      color="tertiary"
+      @click="() => $emit('click', 0)"
+    >
+      <i class="fas fa-thumbs-up"/>
+      <span>HIGHER</span>
+    </wg-button>
+    <wg-button
+      class="wg-btn-group__button wg-btn-group__button--lower" 
+      color="secondary"
+      @click="() => $emit('click', 1)"
+    >
+      <i class="fas fa-thumbs-down"/>
+      <span>LOWER</span>
+    </wg-button>
   </div>
 </template>
 <script>
@@ -26,6 +40,12 @@
       content: "";
       clear: both;
       display: table;
+    }
+
+    &__button {
+      i {
+        margin-right: 10px;
+      }
     }
   }
 </style>

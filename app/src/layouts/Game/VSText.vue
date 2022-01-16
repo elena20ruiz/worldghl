@@ -7,7 +7,7 @@
       <i class="fas fa-times wg-vs-text__icon" />
     </template>
     <template v-else>
-      <span class="wg-text__title wg-text__title--large">
+      <span class="wg-text__title wg-text__title--large wg-text__title--primary">
         VS
       </span>
     </template>
@@ -43,7 +43,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: $wg-secondary-container-color;
+    background-color: $wg-primary-color;
+    color: $wg-on-primary-color;
     padding: 1em;
     border-radius: 10em;
     width: 70px;
@@ -91,8 +92,8 @@
 
   @keyframes CORRECT {
     0% {
-      color: black;
-      background-color: $wg-secondary-container-color;
+      background-color: $wg-primary-color;
+      color: $wg-on-primary-color;
     }
 
     10% {

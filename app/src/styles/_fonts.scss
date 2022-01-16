@@ -11,6 +11,10 @@
       font-size: 50px;
       letter-spacing: 0.1em;
     }
+
+    &--primary {
+      color: $wg-on-primary-color;
+    }
   }
 
   &__body {

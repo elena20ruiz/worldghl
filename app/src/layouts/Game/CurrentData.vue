@@ -23,6 +23,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import LHButtons from './LHButtons.vue'
+  import { delay } from '../../utils/delay.js'
   export default {
     components: { LHButtons },
     name: 'CurrentData',
@@ -45,12 +46,10 @@
         if (typeof value === 'number') {
           this.isClicked = true
           const result = await this.$store.dispatch('game/verifyAnswer', { userAnswer: value })
-          if (!result.value) {
-            this.isCorrect = false
-            this.$router.push({ name: 'EndPage' })
-          } else {
-            this.isCorrect = true
-            this.$emit('change')
+          this.isCorrect = result.value
+          this.$emit('change', { isCorrectAnswer: result.value })
+          if (result.value) {
+            await delay(1000)
             setTimeout(async () => {
               await this.$store.dispatch('game/changeToNextQuestion')
               this.isClicked = false

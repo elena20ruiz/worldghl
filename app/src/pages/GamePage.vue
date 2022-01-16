@@ -1,7 +1,7 @@
 <template>
   <div id="game-page" class="wg-container">
     <div class="wg-game-page__vs">
-      <v-s-text />
+      <v-s-text :status="vsStatus" />
     </div>
     <div class="wg-row wg-game-page" id="wg-game-page">
       <last-data class="wg-game-page__data" />
@@ -23,6 +23,7 @@
   import NextData from '../layouts/Game/NextData.vue'
   import Score from '../layouts/Game/Score.vue'
   import VSText from '../layouts/Game/VSText.vue'
+import { delay } from '../utils/delay'
   export default {
     name: 'MainPage',
     components: { LastData, CurrentData, Score, VSText, NextData },
@@ -34,7 +35,8 @@
     },
     data () {
       return {
-        startTime: ''
+        startTime: '',
+        vsStatus: ''
       }
     },
     watch: {
@@ -48,12 +50,26 @@
       this.$store.dispatch('game/initGame', type)
     },
     methods: {
-      onChange() {
-        const div = document.getElementById('wg-game-page')
-        div.className += " " + 'wg-game-page--processing';
-        setTimeout(() => {
-          div.className = div.className.replace('wg-game-page--processing', '')
-        }, 2000)
+      async onChange({ isCorrectAnswer }) {
+        if (isCorrectAnswer) {
+          this.vsStatus = 'CORRECT'
+          await delay(1000)
+          this.vsStatus = 'INVISIBLE'
+          console.log('changing to invisible')
+          const div = document.getElementById('wg-game-page')
+          div.className += " " + 'wg-game-page--processing'
+          setTimeout(() => {
+            this.vsStatus = ''
+            div.className = div.className.replace('wg-game-page--processing', '')
+          }, 2000)
+        } else {
+          this.vsStatus = 'INCORRECT'
+
+          setTimeout(() => {
+            this.vsStatus = ''
+            this.$router.push({ name: 'EndPage' })
+          }, 2000)
+        }
       }
     }
   }

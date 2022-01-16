@@ -18,7 +18,8 @@
   &__value {
     background-color: $wg-on-background;
     border-radius: 6px;
-    padding: 8px 0px;
+    padding: 8px 10px;
+    opacity: 0.8;
   }
 
   &__buttons {

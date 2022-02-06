@@ -17,7 +17,7 @@
   </div>
 </template>
 <script>
-  import { mapState } from 'vuex'
+  import { mapGetters, mapState } from 'vuex'
   import LastData from '../layouts/Game/LastData.vue'
   import CurrentData from '../layouts/Game/CurrentData.vue'
   import NextData from '../layouts/Game/NextData.vue'
@@ -29,8 +29,10 @@ import { delay } from '../utils/delay'
     components: { LastData, CurrentData, Score, VSText, NextData },
     computed: {
       ...mapState({
-        recordScore: ({ game }) => game.scores.record,
         score: ({ game }) => game.current.score
+      }),
+      ...mapGetters({
+        recordScore: 'game/getRecordScore'
       })
     },
     data () {

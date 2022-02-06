@@ -1,8 +1,14 @@
 <template>
   <div class="wg-game-menu">
     <div class="wg-game-menu__options">
-      <wg-button id="POPULATION" @click="onStartGame" color="primary"> POPULATION </wg-button>
-      <wg-button id="DISTANCE" @click="onStartGame" color="primary"> DISTANCE </wg-button>
+      <wg-button id="POPULATION" @click="onStartGame" class="wg-game-menu__button" color="primary">
+          <i class="fas fa-users"/>
+          POPULATION
+      </wg-button>
+      <wg-button id="DISTANCE" @click="onStartGame" class="wg-game-menu__button" color="primary">
+        <i class="fas fa-ruler"/>
+        DISTANCE
+      </wg-button>
     </div>
   </div>
 </template>
@@ -29,6 +35,15 @@
       flex-direction: column;
       width: 30em;
       gap: 1em;
+    }
+
+    &__button {
+      text-align: center;
+      display: flex;
+      flex-direction: center;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
     }
   }
 </style>

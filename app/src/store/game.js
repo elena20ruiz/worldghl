@@ -5,11 +5,10 @@ const state = {
     topic: '',
     score: 0,
     level: 0,
+    initialDate: '',
     data: {}
   },
-  scores: {
-    record: 10
-  },
+  scores: {},
   dataset: {
     all: [],
     order: []
@@ -23,11 +22,21 @@ const getters = {
       ...state.current.data[type],
       description
     }
-  }
+  },
+  getRecordScore: state => {
+    const { scores, current } = state
+    return scores[current.topic]?.score || 0
+  } 
 }
 
 const mutations = {
   startCurrentGame (state, { topic }) {
+    // Get local store.
+    if (!Object.keys(state.scores).length) {
+      state.scores = JSON.parse(localStorage.getItem('worldgh')) || {}
+    }
+
+    // Load dataset.
     if (!topic) topic = 'POPULATION'
     state.dataset.all = population.places
     const SIZE = population.places.length
@@ -41,6 +50,7 @@ const mutations = {
       topic,
       score: 0,
       level: 0,
+      initialDate: new Date(),
       data: {
         last: state.dataset.all[lastIndex],
         current: state.dataset.all[currentIndex],
@@ -70,6 +80,7 @@ const mutations = {
         score,
         date: now
       }
+      localStorage.setItem('worldgh', JSON.stringify(state.scores))
     }
   }
 }
@@ -82,7 +93,7 @@ const actions = {
     const { last: lastData, current: currentData } = state.current.data
     const [valueL, valueR] = [parseInt(lastData.value), parseInt(currentData.value)]
     const expectedAnswer = valueL > valueR
-    if (valueL !== valueR && expectedAnswer !== Boolean(userAnswer)) {
+    if (expectedAnswer !== Boolean(userAnswer)) {
       commit('updateUserScores')
       return { valid: false }
     } else {

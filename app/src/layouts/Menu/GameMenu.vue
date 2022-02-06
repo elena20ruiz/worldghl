@@ -1,13 +1,13 @@
 <template>
   <div class="wg-game-menu">
     <div class="wg-game-menu__options">
-      <wg-button id="POPULATION" @click="onStartGame" class="wg-game-menu__button" color="primary">
+      <wg-button id="POPULATION_CON" @click="onStartGame" class="wg-game-menu__button" color="primary">
           <i class="fas fa-users"/>
-          POPULATION
+          COUNTRY POPULATION
       </wg-button>
-      <wg-button id="DISTANCE" @click="onStartGame" class="wg-game-menu__button" color="primary">
+      <wg-button id="POPULATION_CI" @click="onStartGame" class="wg-game-menu__button" color="primary">
         <i class="fas fa-ruler"/>
-        DISTANCE
+        CITY POPULATION
       </wg-button>
     </div>
   </div>

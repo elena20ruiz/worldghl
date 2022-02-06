@@ -1,5 +1,12 @@
-import population from '../data/population.json'
+import populationCountries from '../data/population-country-final.json'
+import populationCities from '../data/population-cities-final.json'
 import { createUnsortedArray } from '../utils/random.js'
+
+const GAME_MAPPING = {
+  'POPULATION_CON': populationCountries,
+  'POPULATION_CI': populationCities
+}
+
 const state = {
   current: {
     topic: '',
@@ -20,7 +27,10 @@ const getters = {
     const { description } = state.current.data
     return {
       ...state.current.data[type],
-      description
+      description,
+      background: {
+        url: ''
+      }
     }
   },
   getRecordScore: state => {
@@ -37,9 +47,9 @@ const mutations = {
     }
 
     // Load dataset.
-    if (!topic) topic = 'POPULATION'
-    state.dataset.all = population.places
-    const SIZE = population.places.length
+    if (!topic) topic = 'POPULATION_CON'
+    state.dataset.all = GAME_MAPPING[topic].data
+    const SIZE = populationCountries.data.length
     state.dataset.order = createUnsortedArray(SIZE)
     const [ lastIndex, currentIndex, nextIndex ] = [
       state.dataset.order[0],

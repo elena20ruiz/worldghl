@@ -9,7 +9,7 @@
         <span class="wg-text__body wg-text__body--large">has</span>
       </div>
       <div class="wg-game-data__value">
-        <span class="wg-text__digits--large">{{ lastData.value }}</span>
+        <span class="wg-text__digits--large">{{ lastValue }}</span>
       </div>
       <div class="wg-game-data__description">
         <span class="wg-text__body wg-text__body--large">{{ lastData.description }}</span>
@@ -27,6 +27,10 @@
       }),
       lastData () {
         return this.getData('last')
+      },
+      lastValue () {
+        const value = parseInt(this.lastData.value)
+        return value.toLocaleString()
       }
     }
   }

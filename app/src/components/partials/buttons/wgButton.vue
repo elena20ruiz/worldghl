@@ -75,6 +75,22 @@
             background-color: $wg-on-tertiary-container-color;
           }
         }
+
+        &--social-twitter {
+          background-color: $wg-social-twitter-background;
+          color: white;
+          &:active, &:focus,&:hover {
+            background-color: $wg-social-twitter-on-background;
+          }
+        }
+
+        &--social-share {
+          background-color: $wg-tertiary-container-color;
+          color: $wg-on-tertiary-container-color;
+          &:active, &:focus,&:hover {
+            background-color: $wg-on-tertiary-color;
+          }
+        }
       }
     }
 

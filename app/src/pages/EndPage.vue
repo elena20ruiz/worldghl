@@ -57,7 +57,8 @@
     computed: {
       ...mapState({
         score: ({ game }) => game.current.score,
-        initialDate: ({ game }) => game.current.initialDate
+        initialDate: ({ game }) => game.current.initialDate,
+        topic: ({ game }) => game.current.topic
       }),
       ...mapGetters({
         recordScore: 'game/getRecordScore'
@@ -77,10 +78,16 @@
     },
     methods: {
       onRetry () {
-        this.$router.push({ name: 'GamePage', params: { game: 'POPULATION' } })
+        const topic = this.topic
+        this.finishGame()
+        this.$router.push({ name: 'GamePage', params: { game: topic } })
       },
       onHome () {
+        this.finishGame()
         this.$router.push({ name: 'MainPage' })
+      },
+      finishGame () {
+        this.$store.dispatch('game/finishGame')
       }
     }
   }

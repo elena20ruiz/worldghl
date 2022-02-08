@@ -32,6 +32,7 @@ import { delay } from '../utils/delay'
         score: ({ game }) => game.current.score
       }),
       ...mapGetters({
+        isGameStated: 'game/isGameStarted',
         recordScore: 'game/getRecordScore'
       })
     },

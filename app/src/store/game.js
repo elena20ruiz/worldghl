@@ -27,16 +27,17 @@ const getters = {
     const { description } = state.current.data
     return {
       ...state.current.data[type],
-      description,
-      background: {
-        url: ''
-      }
+      description
     }
   },
   getRecordScore: state => {
     const { scores, current } = state
     return scores[current.topic]?.score || 0
-  } 
+  },
+  isGameStarted: state => {
+    const { topic } = state.current
+    return !(topic === '')
+  }
 }
 
 const mutations = {
@@ -92,6 +93,15 @@ const mutations = {
       }
       localStorage.setItem('worldgh', JSON.stringify(state.scores))
     }
+  },
+  finishGame (state) {
+    state.current = {
+      topic: '',
+      score: 0,
+      level: 0,
+      initialDate: '',
+      data: {}
+    }
   }
 }
 
@@ -113,6 +123,9 @@ const actions = {
   },
   changeToNextQuestion ({ commit }) {
     commit('changeToNextQuestion')
+  },
+  finishGame ({ commit }) {
+    commit('finishGame')
   }
 }
 

@@ -1,5 +1,14 @@
-const fs = require('fs')
+import fs from 'fs'
 
+
+const readJSON = (path) => {
+  try {
+    const data = fs.readFileSync(path, 'utf8')
+    return JSON.parse(data)
+  } catch (err) {
+    console.error(err)
+  }
+}
 
 const readCSVToJSON = (path, keysToMap = [], delimiter = ',') => {
   try {
@@ -40,10 +49,11 @@ const saveJSONFile = (path, value) => {
   })
 }
 
-const parseCountriesData = (population_data) => {
+const parseCountriesData = (population_data, background_countries) => {
   population_data.data.map((el) => {
     el['value'] =  el['Population'].replace(/ /g, '')
     el['title'] = el['Country']
+    el['background'] = background_countries[el['title']].background
     delete el['Population']
     delete el['Country']
     return el
@@ -66,8 +76,10 @@ const parseCitiesData = (population_data) => {
 const run = () => {
   const POPULATION_COUNTRY_PATH = '../data/population-country.csv'
   const POPULATION_COUNTRY_KEYS = ['Country', 'Population']
+  const BACKGROUND_COUNTRY = '../data/background-countries.json'
   let population_countries = readCSVToJSON(POPULATION_COUNTRY_PATH, POPULATION_COUNTRY_KEYS, ',')
-  population_countries = parseCountriesData(population_countries)
+  let background_countries = readJSON(BACKGROUND_COUNTRY)
+  population_countries = parseCountriesData(population_countries, background_countries.data)
   saveJSONFile('../data/population-country-final.json', population_countries)
   
   const POPULATION_CAPITAL_PATH = '../data/population-cities.csv'

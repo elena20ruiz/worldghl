@@ -5,14 +5,22 @@
     </div>
     <div class="wg-game-menu__options">
       <template v-if="step === 0">
-        <wg-square-button icon="fas fa-users" text="POPULATION" id="POPULATION_CON" @click="onNextStep" />
-        <wg-square-button icon="fas fa-ruler" text="SIZE" id="SIZE" @click="onNextStep" />
+        <div v-for="(item, index) of page.categories" :key="index">
+          <wg-square-button
+            color="tertiary"
+            :icon="item.icon"
+            :text="item.text"
+            :id="item.id"
+            @click="onNextStep"
+          />
+        </div>
       </template>
       <template v-else-if="step === 1">
         <div class="wg-game-menu__configuration">
           <wg-card class="wg-game-menu-card">
             <span class="wg-text__label wg-text__label--medium wg-text__label--primary">
-              {{ input.type }}
+              <i :class="selectedCategory.icon" />
+              {{ selectedCategory.text }}
             </span>
             <div class="wg-row">
               <div class="wg-col">
@@ -20,11 +28,14 @@
                   <span class="wg-text__body wg-text__body--primary">Questions:</span>
                 </div>
                 <div class="wg-row wg-game-menu__button-group">
-                  <wg-button-toggle :options="[
-                    { label: 'All', value: 'all' },
-                    { label: 'Countries', value: 'COUNTRIES' },
-                    { label: 'Capitals', value: 'CAPITALS' },
-                  ]" />
+                  <wg-button-toggle
+                    v-model="input.questions"
+                    :options="[
+                      { label: 'All', value: 'all' },
+                      { label: 'Countries', value: 'COUNTRIES' },
+                      { label: 'Capitals', value: 'CAPITALS' },
+                    ]"
+                  />
                 </div>
               </div>
             </div>
@@ -33,16 +44,19 @@
                 <div class="wg-row wg-game-menu-card__separared-input">
                   <span class="wg-text__body wg-text__body--primary">Show the time:</span>
                   <div>
-                    <wg-button-toggle :options="[
-                      { label: 'Yes', value: true },
-                      { label: 'No', value: false },
-                    ]" />
+                    <wg-button-toggle
+                      v-model="input.time"
+                      :options="[
+                        { label: 'Yes', value: 1 },
+                        { label: 'No', value: 0 },
+                      ]"
+                    />
                   </div>
                 </div>
               </div>
             </div>
+            <wg-button class="wg-game-menu__play" @click="onStartGame">PLAY</wg-button>
           </wg-card>
-          <wg-button @click="onStartGame">PLAY</wg-button>
         </div>
       </template>
     </div>
@@ -60,11 +74,31 @@ import WgButtonToggle from '../../components/partials/buttons/wgButtonToggle.vue
       return {
         step: 0,
         input: {
-          type: ''
+          type: '',
+          questions: 'all',
+          time: 1
         },
         page: {
-          title: ['SELECT A CATEGORY', 'CONFIGURE THE GAME']
+          title: ['SELECT A CATEGORY', 'CONFIGURE THE GAME'],
+          categories: [{
+            text: 'POPULATION',
+            id: 'POPULATION_CON',
+            icon: 'fas fa-users'
+          }, {
+            text: 'SIZE',
+            id: 'SIZE',
+            icon: 'fas fa-ruler'
+          }]
         }
+      }
+    },
+    computed: {
+      selectedCategory () {
+        if (this.step === 1) {
+          const { type } = this.input
+          return this.page.categories.find((el) => el.id === type)
+        }
+        return {}
       }
     },
     methods: {
@@ -82,7 +116,7 @@ import WgButtonToggle from '../../components/partials/buttons/wgButtonToggle.vue
   .wg-game-menu {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 40px;
 
     &__options {
       display: flex;
@@ -120,6 +154,11 @@ import WgButtonToggle from '../../components/partials/buttons/wgButtonToggle.vue
 
     &__button-group {
       justify-content: space-evenly;
+    }
+
+    &__play {
+      margin-top: 20px;
+      width: 60%;
     }
   }
 </style>

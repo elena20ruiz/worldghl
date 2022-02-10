@@ -53,6 +53,14 @@
     &--primary {
       color: $wg-on-primary-color;
     }
+
+    &--secondary {
+      color: $wg-on-secondary-color;
+    }
+
+    &--tertiary {
+      color: $wg-on-tertiary-color;
+    }
   }
 
   &__digits {

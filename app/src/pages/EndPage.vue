@@ -3,7 +3,7 @@
     <div class="wg-row">
       <div class="wg-col wg-col--50 wg-end-page__left">
         <div class="wg-row">
-          <img src="../assets/img/bad.gif" />
+          <img src="../assets/img/BAD.gif" />
         </div>
         <div class="wg-row wg-end-page__action-buttons">
           <wg-button @click="onHome">HOME</wg-button>
@@ -71,8 +71,8 @@
         return { minutes, seconds }
       },
       description () {
-        if (this.score >= this.recordScore) return 'RECORD'
-        else if (this.recordScore - this.score <= 10) return 'GOOD'
+        if (this.score > this.recordScore) return 'RECORD'
+        else if (this.recordScore - this.score <= 5) return 'GOOD'
         else return 'BAD'
       }
     },
@@ -105,7 +105,6 @@
     align-items: center;
     justify-content: center;
     font-family: 'Raleway', sans-serif;
-    margin-bottom: 2em;
     &__left {
       display: flex;
       align-items: space-between;

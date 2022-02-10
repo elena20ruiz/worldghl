@@ -47,8 +47,8 @@
     color: $wg-on-primary-color;
     padding: 1em;
     border-radius: 10em;
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;

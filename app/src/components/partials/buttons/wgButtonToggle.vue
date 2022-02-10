@@ -4,12 +4,17 @@
         :options="options"
         :rounded="false"
         :class="['wg-button-toggle', `wg-button-toggle--${color}`]"
+        @input="onClick"
       />
 </template>
 <script>
 export default {
   name: 'wgButtonToggle',
   props: {
+    value: {
+      default: '',
+      type: String
+    },
     options: {
       default: () => [],
       type: Array
@@ -28,6 +33,11 @@ export default {
     if (this.options.length) {
       this.model = this.options[0].value
     }
+  },
+  methods: {
+    onClick () {
+      this.$emit('input', this.model)
+    }
   }
 }
 </script>
@@ -42,15 +52,26 @@ export default {
     .va-button {
       color: $wg-surface !important;
       background: $wg-on-surface !important;
+      &:hover {
+        opacity: 0.9;
+      }
     }
+
+    &--primary {
+      .va-button {
+        &--active {
+          color: $wg-primary-container-color !important;
+          background: $wg-on-primary-container-color !important;
+        }
+
+      }
+    }
+
     &--secondary {
       .va-button {
         &--active {
-          background: $wg-secondary-container-color !important;
-          color: $wg-on-secondary-container-color !important;
-        }
-        &:hover {
-          opacity: 0.9;
+          color: $wg-secondary-container-color !important;
+          background: $wg-on-secondary-container-color !important;
         }
       }
     }
@@ -58,11 +79,8 @@ export default {
     &--tertiary {
       .va-button {
         &--active {
-          background: $wg-tertiary-container-color !important;
-          color: $wg-on-tertiary-container-color !important;
-        }
-        &:hover {
-          opacity: 0.9;
+          color: $wg-tertiary-container-color !important;
+          background: $wg-on-tertiary-container-color !important;
         }
       }
     }

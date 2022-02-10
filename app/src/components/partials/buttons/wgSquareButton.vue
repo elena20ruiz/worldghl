@@ -1,7 +1,12 @@
 <template>
-  <wg-button class="wg-elevation__v1 wg-square-button" :id="id" @click="() => onClick(id)">
-    <i :class="[icon, 'wg-square-button__icon']"/>
-    <span class="wg-text__label wg-text__label--medium  wg-text__label--primary wg-square-button__text">
+  <wg-button
+    class="wg-elevation__v1 wg-square-button"
+    :id="id"
+    :color="color"
+    @click="() => onClick(id)"
+  >
+    <i :class="[icon, 'wg-square-button__icon', `wg-square-button__icon--${color}`]"/>
+    <span :class="`wg-text__label wg-text__label--medium  wg-text__label--${color} wg-square-button__text`">
       {{ text }}
     </span>
   </wg-button>
@@ -23,6 +28,10 @@ import wgButton from './wgButton.vue'
       id: {
         default: '',
         type: String
+      },
+      color: {
+        default: '',
+        type: String
       }
     },
     emits: ['click'],
@@ -37,8 +46,6 @@ import wgButton from './wgButton.vue'
   .wg-square-button {
     display: inline-block;
     border: none;
-    background-color: $wg-primary-color;
-    border-radius: 8px;
     width: 120px;
     height: 120px;
     padding: 1em;
@@ -55,6 +62,9 @@ import wgButton from './wgButton.vue'
     &__icon {
       font-size: 48px;
       color: $wg-on-primary-color;
+      &--tertiary {
+        color: $wg-on-tertiary-color;
+      }
     }
 
     &__text {

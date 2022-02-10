@@ -12,6 +12,5 @@ export default {
   .wg-card {
     background-color: white;
     padding: 1em;
-    border-radius: 5px;
   }
 </style>

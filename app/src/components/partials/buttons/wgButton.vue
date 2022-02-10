@@ -37,7 +37,7 @@
     line-height: 36px;
 
     border: none;
-    border-radius: 4px;
+    border-radius: 0px;
 
     cursor: pointer;
     touch-action: manipulation;
@@ -45,8 +45,9 @@
 
     &--raised {
       padding: 0 16px;
-      box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12);
-
+      box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+        0px 2px 1px -1px rgba(0, 0, 0, 0.12);
       &.wg-btn {
         &--primary {
           color: $wg-on-primary-color;

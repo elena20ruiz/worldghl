@@ -3,7 +3,9 @@
     <div class="wg-row">
       <div class="wg-col wg-col--50 wg-end-page__left">
         <div class="wg-row">
-          <img src="../assets/img/BAD.gif" />
+          <img v-if="description==='BAD'" src="../assets/img/BAD.gif" />
+          <img v-else-if="description==='GOOD'" src="../assets/img/GOOD.gif" />
+          <img v-else src="../assets/img/RECORD.gif" />
         </div>
         <div class="wg-row wg-end-page__action-buttons">
           <wg-button @click="onHome">HOME</wg-button>

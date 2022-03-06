@@ -11,6 +11,7 @@ const state = {
   current: {
     topic: '',
     score: 0,
+    record: {},
     level: 0,
     initialDate: '',
     data: {}
@@ -31,8 +32,8 @@ const getters = {
     }
   },
   getRecordScore: state => {
-    const { scores, current } = state
-    return scores[current.topic]?.score || 0
+    const { current } = state
+    return current.record?.score || 0
   },
   isGameStarted: state => {
     const { topic } = state.current
@@ -62,6 +63,7 @@ const mutations = {
       score: 0,
       level: 0,
       initialDate: new Date(),
+      record: state.scores[topic],
       data: {
         last: state.dataset.all[lastIndex],
         current: state.dataset.all[currentIndex],

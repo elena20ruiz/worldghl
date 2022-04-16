@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import MainPage from '../pages/MainPage.vue';
+import StartPage from '../pages/StartPage.vue';
 import GamePage from '../pages/GamePage.vue';
 import EndPage from '../pages/EndPage.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'MainPage',
-    component: MainPage,
+    name: 'StartPage',
+    component: StartPage,
   },
   {
     path: '/game/:game',

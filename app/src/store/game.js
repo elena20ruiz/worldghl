@@ -42,7 +42,7 @@ const getters = {
 }
 
 const mutations = {
-  startCurrentGame (state, { topic }) {
+  startCurrentGame (state, { topic, config }) {
     // Get local store.
     if (!Object.keys(state.scores).length) {
       state.scores = JSON.parse(localStorage.getItem('worldgh')) || {}
@@ -108,8 +108,8 @@ const mutations = {
 }
 
 const actions = {
-  async initGame ({ commit }, topic) {
-    commit('startCurrentGame', { topic })
+  async initGame ({ commit }, { topic, config }) {
+    commit('startCurrentGame', { topic, config })
   },
   verifyAnswer ({ commit, state }, { userAnswer }) {
     const { last: lastData, current: currentData } = state.current.data

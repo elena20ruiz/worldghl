@@ -80,16 +80,20 @@
     },
     methods: {
       onRetry () {
-        const topic = this.topic
         this.finishGame()
-        this.$router.push({ name: 'GamePage', params: { game: topic } })
+        this.resetGame()
+        this.$router.push({ name: 'GamePage' })
       },
       onHome () {
         this.finishGame()
-        this.$router.push({ name: 'MainPage' })
+        this.$router.push({ name: 'StartPage' })
       },
       finishGame () {
         this.$store.dispatch('game/finishGame')
+      },
+      resetGame () {
+        const topic = this.topic
+        this.$store.dispatch('game/initGame', { topic })
       }
     }
   }

@@ -28,7 +28,7 @@
       }
     },
     methods: {
-      onClickNext (data) {
+      async onClickNext (data) {
         if (data) {
           switch (this.step) {
             case 2:
@@ -40,7 +40,9 @@
           }
         }
         if (this.step === 3) {
-          this.$router.push({ name: 'GamePage', params: { game: this.config.category } })
+          await this.$store.dispatch('game/initGame', { type: this.config.category, config: this.config.data })
+          this.$router.push({ name: 'GamePage' })
+
         }
         this.step += 1
       }

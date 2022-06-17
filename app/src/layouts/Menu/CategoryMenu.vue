@@ -1,13 +1,13 @@
 <template>
   <div class="wg-category-menu">
-    <div class="wg-col wg-category-menu__content">
+    <div class="wg-col content">
       <div class="wg-row">
-        <div class="wg-text__title wg-text__title--large">
+        <div class="wg-txt-title wg-txt-title--medium">
           Select a category:
         </div>
       </div>
       <div class="wg-row">
-        <div class="wg-col wg-category-menu__options-list">
+        <div class="game-options">
           <wg-button v-for="c of categories" :key="c.value" :id="c.value" @click="(event) => onClick(event)">
             {{ c.name }}
           </wg-button>
@@ -42,16 +42,19 @@
   .wg-category-menu {
     display: flex;
     height: 100%;
-    background: yellowgreen;
     justify-content: center;
-    gap: 40px;
-    &__content {
-      width: 400px;
+    .content {
+      width: 450px;
       justify-content: center;
       align-items: center;
+      gap: 20px;
     }
-    &__options-list {
+    .game-options {
+      display: flex;
+      flex-direction: column;
       gap: 10px;
+      width: 100%;
+      justify-content: center;
     }
   }
 </style>

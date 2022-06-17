@@ -48,10 +48,6 @@ import { delay } from '../utils/delay'
           // If it is not possible then reset.
       }
     },
-    async beforeMount () {
-      const type = this.$route.params.game
-      this.$store.dispatch('game/initGame', type)
-    },
     methods: {
       async onChange({ isCorrectAnswer }) {
         if (isCorrectAnswer) {

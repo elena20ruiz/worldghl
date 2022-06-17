@@ -6,7 +6,7 @@
     @click="() => onClick(id)"
   >
     <i :class="[icon, 'wg-square-button__icon', `wg-square-button__icon--${color}`]"/>
-    <span :class="`wg-text__label wg-text__label--medium  wg-text__label--${color} wg-square-button__text`">
+    <span :class="`wg-txt-label wg-txt-label--medium  wg-txt-label--${color} wg-square-button__text`">
       {{ text }}
     </span>
   </wg-button>
@@ -63,7 +63,7 @@ import wgButton from './wgButton.vue'
       font-size: 48px;
       color: $wg-on-primary-color;
       &--tertiary {
-        color: $wg-on-tertiary-color;
+        color: white
       }
     }
 

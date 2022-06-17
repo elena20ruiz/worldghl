@@ -1,19 +1,19 @@
 <template>
   <div class="wg-main-menu wg-row">
-    <div class="wg-col wg-main-menu__col-first">
-      <h1 class="wg-main-brand__title wg-text__title wg-text__title--large">
+    <div class="wg-col main-col-left">
+      <h1 class="logo wg-txt-title wg-txt-title--large">
         WORLD <br/>
         H/L
       </h1>
     </div>
-    <div class="wg-col wg-main-menu__col-second">
+    <div class="wg-col main-col-right wg-background--on-surface">
       <div class="wg-row">
-        <h1 class="wg-text__title wg-text__title--large">
+        <h1 class="title wg-txt-title wg-txt-title--large wg-txt-title--primary">
           How is your geography knowledge?
         </h1>
       </div>
       <div class="wg-row">
-        <wg-button @click="onClick"> PLAY </wg-button>
+        <wg-button class="play-button" color="secondary" size="medium" @click="onClick"> PLAY </wg-button>
       </div>
     </div>
   </div>
@@ -37,21 +37,32 @@
     height: 100%;
     align-items: center;
     text-align: center;
-    &__col-first {
-      width: 35%;
+    .main-col-left {
+      width: 30em;
       background-image: url('../../assets/img/background.jpg');
       height: 100%;
       justify-content: center;
-      h1 {
-        line-height: 35px;
+      .logo {
+        font-size: 60px;
+        line-height: 40px;
+        color: $wg-on-surface;
       }
     }
 
-    &__col-second {
+    .main-col-right {
       gap: 30px;
+      height: 100%;
+      justify-content: center;
       .wg-row {
         justify-content: center;
       }
+    }
+
+    .play-button {
+      padding-left: 3em;
+      padding-right: 3em;
+      padding-top: 0.35em;
+      padding-bottom: 0.35em;
     }
 
   }

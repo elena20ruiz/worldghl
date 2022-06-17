@@ -15,7 +15,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background: $wg-on-background;
+  background-color: #000;
 }
 
 
@@ -25,4 +25,8 @@ body {
     0px 1px 1px 0px rgba(0, 0, 0, 0.14),
     0px 2px 1px -1px rgba(0, 0, 0, 0.12);
   }
+}
+
+.wg-background--on-surface {
+  background-color: $wg-on-surface;
 }

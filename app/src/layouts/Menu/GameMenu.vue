@@ -1,6 +1,6 @@
 <template>
   <div class="wg-game-menu">
-    <div class="wg-text__title wg-text__title--medium wg-text__title--primary wg-game-menu__title">
+    <div class="wg-text__subtitle wg-text__subtitle--large wg-game-menu__title">
         {{ page.title[step] }}
     </div>
     <div class="wg-game-menu__options">
@@ -79,7 +79,7 @@ import WgButtonToggle from '../../components/partials/buttons/wgButtonToggle.vue
           time: 1
         },
         page: {
-          title: ['SELECT A CATEGORY', 'CONFIGURE THE GAME'],
+          title: ['Select a category', 'Configure the name'],
           categories: [{
             text: 'POPULATION',
             id: 'POPULATION_CON',
@@ -117,6 +117,10 @@ import WgButtonToggle from '../../components/partials/buttons/wgButtonToggle.vue
     display: flex;
     flex-direction: column;
     gap: 40px;
+
+    &__title {
+      font-weight: 700;
+    }
 
     &__options {
       display: flex;

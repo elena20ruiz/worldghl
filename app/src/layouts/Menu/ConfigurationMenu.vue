@@ -1,13 +1,13 @@
 <template>
   <div class="wg-configuration-menu">
-    <div class="wg-col wg-configuration-menu__content">
+    <div class="wg-col content">
       <div class="wg-row">
-        <div class="wg-text__title wg-text__title--large">
+        <div class="wg-txt-title wg-txt-title--medium">
           Configure the game:
         </div>
       </div>
       <div class="wg-row">
-        <wg-button @click="onClick">PLAY</wg-button>
+        <wg-button size="large" @click="onClick">PLAY</wg-button>
       </div>
     </div>
   </div>
@@ -29,16 +29,13 @@
   .wg-configuration-menu {
     display: flex;
     height: 100%;
-    background: green;
     justify-content: center;
     gap: 40px;
-    &__content {
-      width: 400px;
+    .content {
+      width: 425px;
       justify-content: center;
       align-items: center;
-    }
-    &__options-list {
-      gap: 10px;
+      gap: 25px;
     }
   }
 </style>

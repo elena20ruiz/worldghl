@@ -3,19 +3,19 @@
     <div class="wg-game-data__background" :style="{ backgroundImage: `url(${currentData.background.url})`}" />
     <div class="wg-game-data__content">
       <div class="wg-game-data__title">
-        <span class="wg-text__title wg-text__title--large">{{ currentData.title }}</span>
+        <span class="wg-txt-title wg-txt-title--large">{{ currentData.title }}</span>
       </div>
       <div class="wg-game-data__subtitle">
-        <span class="wg-text__body wg-text__body--large">has</span>
+        <span class="wg-txt-body wg-txt-body--large">has</span>
       </div>
       <div v-if="!isClicked" class="wg-game-data__buttons">
         <l-h-buttons @click="onClick"/>
       </div>
       <div v-if="isClicked" class="wg-game-data__value">
-        <span class="wg-text__digits--large">{{ currentValue }}</span>
+        <span class="wg-txt-digints--large">{{ currentValue }}</span>
       </div>
       <div class="wg-game-data__description">
-        <span class="wg-text__body wg-text__body--large">{{ currentData.description }}</span>
+        <span class="wg-txt-body wg-txt-body--large">{{ currentData.description }}</span>
       </div>
     </div>
   </div>

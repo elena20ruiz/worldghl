@@ -1,5 +1,5 @@
 <template>
-  <button :class="['wg-btn', `wg-btn--${type}`, `wg-btn--${color}`, ' wg-text__label--medium']" @click="onClick">
+  <button :class="['wg-btn', `wg-btn--${type}`, `wg-btn--${color}`, `wg-txt-label--${size}`]" @click="onClick">
     <slot />
   </button>
 </template>
@@ -15,6 +15,10 @@
       color: {
         type: String,
         default: 'primary'
+      },
+      size: {
+        type: String,
+        default: 'medium'
       }
     },
     emits: ['click'],
@@ -69,11 +73,12 @@
         }
 
         &--tertiary {
-          color: $wg-on-tertiary-color;
-          background-color: $wg-tertiary-color;
+          color: white;
+          background-color: rgba(255,255,255,.5);
+          border: 3px solid rgba(255, 255, 255, 1);
           &:active, &:focus,&:hover {
-            color: $wg-tertiary-container-color;
-            background-color: $wg-on-tertiary-container-color;
+            background-color: rgba(255,255,255,.25);
+            border: 3px solid rgba(255, 255, 255, .75);
           }
         }
 

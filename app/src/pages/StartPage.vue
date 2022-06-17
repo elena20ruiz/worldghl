@@ -1,5 +1,5 @@
 <template>
-  <div id="start-page">
+  <div id="start-page" class="wg-background--on-surface">
     <template v-if="step === 1">
       <main-menu @click:next="onClickNext" />
     </template>

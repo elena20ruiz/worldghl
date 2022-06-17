@@ -3,16 +3,16 @@
     <div class="wg-game-data__background" :style="{ backgroundImage: `url(${lastData.background.url})`}"/>
     <div class="wg-game-data__content">
       <div class="wg-game-data__title">
-        <span class="wg-text__title wg-text__title--large">{{ lastData.title }}</span>
+        <span class="wg-txt-title wg-txt-title--large">{{ lastData.title }}</span>
       </div>
       <div class="wg-game-data__subtitle">
-        <span class="wg-text__body wg-text__body--large">has</span>
+        <span class="wg-txt-body wg-txt-body--large">has</span>
       </div>
       <div class="wg-game-data__value">
-        <span class="wg-text__digits--large">{{ lastValue }}</span>
+        <span class="wg-txt-digits--large">{{ lastValue }}</span>
       </div>
       <div class="wg-game-data__description">
-        <span class="wg-text__body wg-text__body--large">{{ lastData.description }}</span>
+        <span class="wg-txt-body wg-txt-body--large">{{ lastData.description }}</span>
       </div>
     </div>
   </div>

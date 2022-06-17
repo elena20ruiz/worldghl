@@ -1,7 +1,7 @@
 <template>
   <div id="main-page" class="wg-container wg-main-page">
     <div class="wg-row">
-      <div class="wg-col wg-col--50 wg-background--primary">
+      <div class="wg-col wg-col--50">
         <main-brand />
       </div>
       <div class="wg-col wg-col--50 wg-main-page__menu">
@@ -22,9 +22,11 @@
 <style lang="scss">
   #main-page {
     height: 100vh;
+    background-image: url('../assets/img/background.jpg');
   }
 
   .wg-main-page {
+    padding: 2em;
     &__menu {
       display: flex;
       justify-content: center;

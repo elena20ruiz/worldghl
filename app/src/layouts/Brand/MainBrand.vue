@@ -1,7 +1,14 @@
 <template>
   <div class="wg-main-brand">
-    <div class="wg-main-brand__img">
-      <img src="../../assets/img/logo3.png" />
+    <div class="wg-row">
+      <div class="wg-col">
+        <h1 class="wg-main-brand__title wg-text__title wg-text__title--large">
+          How is your geography knowledge?
+        </h1>
+        <h2 class="wg-main-brand__subtitle wg-text__subtitle wg-text__subtitle--large">
+          Play this game!
+        </h2>
+      </div>
     </div>
   </div>
 </template>
@@ -16,11 +23,10 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    &__img {
-      img {
-        width: 80%;
-        max-width: 400px;
-      }
+    text-align: left;
+
+    .wg-col {
+      gap: 24px;
     }
   }
 </style>

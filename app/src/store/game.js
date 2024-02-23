@@ -13,6 +13,7 @@ const state = {
     score: 0,
     record: {},
     level: 0,
+    question: 0,
     initialDate: '',
     data: {}
   },
@@ -25,15 +26,12 @@ const state = {
 
 const getters = {
   getData: state => (type) => {
-    console.log({ state })
-    if (!state.current || !state.current.data) return;
+    if (type === 'next' && !state.current.data.next) return undefined;
     const { description } = state.current.data
-    const r = {
+    return {
       ...state.current.data[type],
       description,
     }
-    console.warn({ r })
-    return r;
   },
   getRecordScore: state => {
     const { current } = state
@@ -47,7 +45,6 @@ const getters = {
 
 const mutations = {
   startCurrentGame (state, { topic }) {
-    console.log('hi')
     // Get local store.
     if (!Object.keys(state.scores).length) {
       state.scores = JSON.parse(localStorage.getItem('worldghl')) || {}
@@ -63,41 +60,46 @@ const mutations = {
       state.dataset.order[1],
       state.dataset.order[2]
     ]
-    console.log({ all: state.dataset})
-    try {
-      state.current = {
-        topic,
-        score: 0,
-        level: 0,
-        initialDate: new Date(),
-        record: state.scores[topic],
-        data: {
-          last: state.dataset.all[lastIndex],
-          current: state.dataset.all[currentIndex],
-          next: state.dataset.all[nextIndex],
-          description: 'of population.'
-        }
+    state.current = {
+      topic,
+      score: 0,
+      level: 0,
+      question: 0,
+      initialDate: new Date(),
+      record: state.scores[topic],
+      data: {
+        last: state.dataset.all[lastIndex],
+        current: state.dataset.all[currentIndex],
+        next: state.dataset.all[nextIndex],
+        description: 'of population.'
       }
-    } catch (error) {
-        console.error({ error })
     }
-
   },
   validateAnswer (state) {
     // Increase results
     state.current.score += 1
     state.current.level += 1
+    state.current.question += 1
   },
   changeToNextQuestion (state) {
-    // Prepare next question
     state.current.data.last = state.current.data.current
     state.current.data.current = state.current.data.next
 
-    const nextQuestion = state.dataset.order[state.current.level + 2]
+    // Check if it's last question
+    let nextQuestion;
+    if (state.current.question + 2 >= state.dataset.order.length) {
+      // Create new order of questions
+      state.dataset.order = createUnsortedArray(populationCountries.data.length)
+      state.current.question = 0
+      // Problem, after 2nd round question = 1 position is not red.
+      nextQuestion = state.dataset.order[state.current.question]
+    } else {
+      nextQuestion = state.dataset.order[state.current.question + 2]
+    }
     state.current.data.next = state.dataset.all[nextQuestion]
   },
   updateUserScores (state) {
-    const { topic, score } = state.current
+    const { topic, score } = state.current
     if (!state.scores[topic] || state.scores[topic].score < score) {
       const now = new Date()
       state.scores[topic] = {

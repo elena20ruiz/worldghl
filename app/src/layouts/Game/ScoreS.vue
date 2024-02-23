@@ -10,10 +10,10 @@
 </template>
 <script>
   export default {
-    name: 'Score',
+    name: 'ScoreS',
     props: {
       text: {
-        default: 'Score',
+        default: 'ScoreS',
         type: String
       },
       value: {

@@ -10,8 +10,8 @@
     </div>
     <div class="wg-game-page__score-container">
       <div class="wg-game-page__score">
-        <score text="Record" :value="recordScore" />
-        <score text="Score" :value="score"/>
+        <score-s text="Record" :value="recordScore" />
+        <score-s text="Score" :value="score"/>
       </div>
     </div>
   </div>
@@ -21,12 +21,12 @@
   import LastData from '../layouts/Game/LastData.vue'
   import CurrentData from '../layouts/Game/CurrentData.vue'
   import NextData from '../layouts/Game/NextData.vue'
-  import Score from '../layouts/Game/Score.vue'
   import VSText from '../layouts/Game/VSText.vue'
-import { delay } from '../utils/delay'
+  import { delay } from '../utils/delay'
+  import ScoreS from '../layouts/Game/ScoreS.vue'
   export default {
     name: 'MainPage',
-    components: { LastData, CurrentData, Score, VSText, NextData },
+    components: { LastData, CurrentData, VSText, NextData, ScoreS },
     computed: {
       ...mapState({
         score: ({ game }) => game.current.score

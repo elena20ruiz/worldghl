@@ -1,4 +1,4 @@
-import populationCountries from '../data/population-country-final.json'
+import populationCountries from '../data/population.json'
 import populationCities from '../data/population-cities-final.json'
 import { createUnsortedArray } from '../utils/random.js'
 
@@ -25,11 +25,15 @@ const state = {
 
 const getters = {
   getData: state => (type) => {
+    console.log({ state })
+    if (!state.current || !state.current.data) return;
     const { description } = state.current.data
-    return {
+    const r = {
       ...state.current.data[type],
-      description
+      description,
     }
+    console.warn({ r })
+    return r;
   },
   getRecordScore: state => {
     const { current } = state
@@ -43,9 +47,10 @@ const getters = {
 
 const mutations = {
   startCurrentGame (state, { topic }) {
+    console.log('hi')
     // Get local store.
     if (!Object.keys(state.scores).length) {
-      state.scores = JSON.parse(localStorage.getItem('worldgh')) || {}
+      state.scores = JSON.parse(localStorage.getItem('worldghl')) || {}
     }
 
     // Load dataset.
@@ -58,19 +63,25 @@ const mutations = {
       state.dataset.order[1],
       state.dataset.order[2]
     ]
-    state.current = {
-      topic,
-      score: 0,
-      level: 0,
-      initialDate: new Date(),
-      record: state.scores[topic],
-      data: {
-        last: state.dataset.all[lastIndex],
-        current: state.dataset.all[currentIndex],
-        next: state.dataset.all[nextIndex],
-        description: 'of population.'
+    console.log({ all: state.dataset})
+    try {
+      state.current = {
+        topic,
+        score: 0,
+        level: 0,
+        initialDate: new Date(),
+        record: state.scores[topic],
+        data: {
+          last: state.dataset.all[lastIndex],
+          current: state.dataset.all[currentIndex],
+          next: state.dataset.all[nextIndex],
+          description: 'of population.'
+        }
       }
+    } catch (error) {
+        console.error({ error })
     }
+
   },
   validateAnswer (state) {
     // Increase results
@@ -93,7 +104,7 @@ const mutations = {
         score,
         date: now
       }
-      localStorage.setItem('worldgh', JSON.stringify(state.scores))
+      localStorage.setItem('worldghl', JSON.stringify(state.scores))
     }
   },
   finishGame (state) {

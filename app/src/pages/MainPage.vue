@@ -5,7 +5,7 @@
         <main-brand />
       </div>
       <div class="wg-col wg-col--50 wg-main-page__menu">
-        <game-menu />
+        <game-play />
       </div>
     </div>
   </div>
@@ -13,10 +13,11 @@
 
 <script>
   import MainBrand from '../layouts/Brand/MainBrand.vue'
-  import GameMenu from '../layouts/Menu/GameMenu.vue'
+  //import GameMenu from '../layouts/Menu/GameMenu.vue'
+  import GamePlay from '../layouts/Menu/GamePlay.vue'
   export default {
     name: 'MainPage',
-    components: { GameMenu, MainBrand }
+    components: { /*GameMenu*/ GamePlay, MainBrand }
   }
 </script>
 <style lang="scss">
